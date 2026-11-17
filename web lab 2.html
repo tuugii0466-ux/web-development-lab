@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лаборатори 02: Хэрэглэгчийн анкет</title>
+    <style>
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #1e3a8a;
+            color: #ffffff;
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
+        header h1 {
+            margin-bottom: 0.8rem;
+            font-size: 1.8rem;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        nav a {
+            color: #dbeafe;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background-color: #2563eb;
+            color: #fff;
+        }
+        
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        section {
+            background: #ffffff;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        h2 {
+            color: #1e3a8a;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        fieldset {
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        legend {
+            font-weight: bold;
+            color: #1e3a8a;
+            padding: 0 0.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: #475569;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.65rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+        
+        .inline-group label {
+            display: inline-block;
+            font-weight: normal;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        .checkbox-group label {
+            display: block;
+            font-weight: normal;
+            margin-bottom: 0.4rem;
+            cursor: pointer;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button[type="submit"] {
+            background-color: #2563eb;
+            color: white;
+        }
+        button[type="submit"]:hover {
+            background-color: #1d4ed8;
+        }
+        button[type="reset"] {
+            background-color: #e2e8f0;
+            color: #475569;
+        }
+        button[type="reset"]:hover {
+            background-color: #cbd5e1;
+        }
+        
+        .interest-list {
+            padding-left: 1.5rem;
+        }
+        .interest-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        thead {
+            background-color: #1e3a8a;
+            color: white;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #1e293b;
+            color: #94a3b8;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <header>
+        <h1>Оюутны Бүртгэлийн Портал</h1>
+        
+        <nav>
+            <ul>
+                <li><a href="../index.html">Нүүр</a></li>
+                <li><a href="#anket">Анкет засах</a></li>
+                <li><a href="#grades">Дүн харах</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    
+    <main>
+        <article>
+            <section id="anket">
+                <h2>Хэрэглэгчийн Анкет Бөглөх</h2>
+                <p style="margin-bottom: 1.5rem; color: #64748b;">Доорх формын дагуу мэдээллээ бүрэн, үнэн зөв зааж бөглөнө үү.</p>
+                
+                <form action="#" method="POST" enctype="multipart/form-data">
+                    
+                    <fieldset>
+                        <legend>Хувийн мэдээлэл</legend>
+                        
+                        <div class="form-group">
+                            <label for="fullname">Овог нэр: *</label>
+                            <input type="text" id="fullname" name="fullname" placeholder="И. Болдбаатар" required minlength="2">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Цахим хаяг (Email): *</label>
+                            <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Нууц үг (Хамгийн багадаа 6 тэмдэгт): *</label>
+                            <input type="password" id="password" name="password" required minlength="6">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Утасны дугаар (8 оронтой тоо): *</label>
+                            <input type="tel" id="phone" name="phone" pattern="[0-9]{8}" title="8 оронтой зөвхөн тоо оруулна уу (Жишээ: 88112233)" placeholder="88112233" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dob">Төрсөн огноо: *</label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+
+                        <div class="form-group inline-group">
+                            <label style="display: block; font-weight: 600;">Хүйс:</label>
+                            <label for="male"><input type="radio" id="male" name="gender" value="male" required> Эрэгтэй</label>
+                            <label for="female"><input type="radio" id="female" name="gender" value="female"> Эмэгтэй</label>
+                        </div>
+                    </fieldset>
+
+                    
+                    <fieldset>
+                        <legend>Боловсрол ба Сонирхол</legend>
+
+                        <div class="form-group">
+                            <label for="degree">Суралцаж буй түвшин: *</label>
+                            <select id="degree" name="degree" required>
+                                <option value="">-- Сонгоно уу --</option>
+                                <option value="bachelor">Бакалавр</option>
+                                <option value="master">Магистр</option>
+                                <option value="doctor">Докторант</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label style="font-weight: 600;">Сонирхож буй технологиуд:</label>
+                            <label for="html"><input type="checkbox" id="html" name="skills" value="HTML"> HTML5 / CSS3</label>
+                            <label for="js"><input type="checkbox" id="js" name="skills" value="JavaScript"> JavaScript</label>
+                            <label for="php"><input type="checkbox" id="php" name="skills" value="PHP"> PHP & MySQL</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="avatar">Профайл зураг оруулна уу:</label>
+                            <input type="file" id="avatar" name="avatar" accept="image/*">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bio">Товч танилцуулга / Өөрийн тухай:</label>
+                            <textarea id="bio" name="bio" rows="4" placeholder="Өөрийн танилцуулгыг энд бичнэ үү..."></textarea>
+                        </div>
+                    </fieldset>
+
+                    
+                    <div class="btn-group">
+                        <button type="submit">Анкет Илгээх</button>
+                        <button type="reset">Дахин эхлүүлэх</button>
+                    </div>
+                </form>
+            </section>
+        </article>
+
+        
+        <section>
+            <h2>Миний сонирхол</h2>

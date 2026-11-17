@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Тал нутаг – Аяллын сэтгүүл | Лаб 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #eef3f4;
+    --surface: #ffffff;
+    --ink: #12303a;
+    --muted: #5a727a;
+    --brand: #0f4c5c;
+    --brand-ink: #ffffff;
+    --accent: #e3a72f;
+    --line: #d5e0e3;
+    --radius: 12px;
+    --gap: 1.5rem;
+    font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #0d1b20; --surface: #15282f; --ink: #e6f0f2; --muted: #9db4bb;
+      --brand: #0a2f39; --line: #27414a;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0d1b20; --surface: #15282f; --ink: #e6f0f2; --muted: #9db4bb;
+    --brand: #0a2f39; --line: #27414a;
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+  :root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body { background: var(--bg); color: var(--ink); line-height: 1.6; }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  .page {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "header" "nav" "main" "sidebar" "footer";
+    gap: var(--gap);
+    max-width: 1200px;
+    margin-inline: auto;
+    padding: 0 1rem 2rem;
+  }
+  .site-header { grid-area: header; }
+  .site-nav    { grid-area: nav; }
+  .content     { grid-area: main; }
+  .sidebar     { grid-area: sidebar; }
+  .site-footer { grid-area: footer; }
+
+  @media (min-width: 900px) {
+    .page {
+      grid-template-columns: 1fr 300px;
+      grid-template-areas:
+        "header  header"
+        "nav     nav"
+        "main    sidebar"
+        "footer  footer";
+    }
+  }
+
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 0 0;
+  }
+  .logo { font-weight: 800; font-size: 1.6rem; letter-spacing: -.02em; text-decoration: none; color: var(--brand); }
+  .header-actions { display: flex; align-items: center; gap: .75rem; }
+  .btn {
+    font: inherit; font-weight: 600; cursor: pointer;
+    padding: .55rem 1rem; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: #2a1d00; }
+
+  .site-nav {
+    background: var(--brand);
+    color: var(--brand-ink);
+    border-radius: var(--radius);
+    padding: .35rem .75rem;
+  }
+  .nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;   
+    align-items: center;
+    gap: .25rem 1rem;
+    list-style: none;
+    padding: 0;
+  }
+  .nav-list a {
+    display: block; padding: .65rem .9rem; text-decoration: none; border-radius: 8px; font-weight: 600;
+  }
+  .nav-list a:hover, .nav-list a[aria-current="page"] { background: rgba(255,255,255,.14); }
+  .nav-list .push-right { margin-left: auto; }  
+  @media (max-width: 600px) { .nav-list { justify-content: flex-start; } }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 240px;
+    padding: 2rem;
+    border-radius: var(--radius);
+    color: #fff;
+    background:
+      linear-gradient(to top, rgba(8,32,40,.85), rgba(8,32,40,.1)),
+      linear-gradient(135deg, #3e7d8c 0%, #8db36a 55%, #e3a72f 100%);
+  }
+  .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); line-height: 1.2; max-width: 22ch; }
+  .hero p { max-width: 55ch; margin-top: .5rem; }
+
+  .section-title {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin: 2rem 0 1rem;
+  }
+  .section-title h2 { font-size: 1.3rem; }
+  .section-title a { color: var(--muted); font-size: .9rem; }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap);
+  }
+  @media (max-width: 1100px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px)  { .card-grid { grid-template-columns: 1fr; } }
+
+  .card {
+    display: flex;                    
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .card-media { aspect-ratio: 16 / 10; }
+  .card-body { display: flex; flex-direction: column; gap: .5rem; padding: 1rem 1.1rem 1.1rem; flex: 1; }
+  .card-body h3 { font-size: 1.05rem; line-height: 1.35; }
+  .card-body p { color: var(--muted); font-size: .92rem; }
+  .card-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: auto;                 
+    padding-top: .75rem; border-top: 1px solid var(--line);
+    font-size: .82rem; color: var(--muted);
+  }
+  .tag { background: var(--bg); padding: .15rem .6rem; border-radius: 999px; font-weight: 600; color: var(--brand); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tag { color: var(--accent); } }
+  :root[data-theme="dark"] .tag { color: var(--accent); }
+
+  .m1 { background: linear-gradient(135deg, #8db36a, #3e7d8c); }
+  .m2 { background: linear-gradient(135deg, #e3a72f, #c4673a); }
+  .m3 { background: linear-gradient(135deg, #3e7d8c, #12303a); }
+  .m4 { background: linear-gradient(135deg, #a9c6a0, #f0d98c); }
+  .m5 { background: linear-gradient(135deg, #5b8fa3, #b9d6dd); }
+  .m6 { background: linear-gradient(135deg, #c4673a, #e3a72f); }
+
+
+  .sidebar { display: flex; flex-direction: column; gap: var(--gap); align-self: start; }
+  .widget { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.2rem; }
+  .widget h2 { font-size: 1.05rem; margin-bottom: .75rem; }
+  .widget ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: .6rem; }
+  .widget li { display: flex; justify-content: space-between; align-items: center; gap: .5rem; font-size: .92rem; }
+  .widget li span { color: var(--muted); font-size: .82rem; }
+  .subscribe { display: flex; flex-direction: column; gap: .6rem; }
+  .subscribe input {
+    font: inherit; padding: .6rem .8rem; border: 1px solid var(--line); border-radius: 8px;
+    background: var(--bg); color: var(--ink);
+  }
+
+
+  .site-footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--gap);
+    background: var(--brand);
+    color: var(--brand-ink);
+    border-radius: var(--radius);
+    padding: 2rem;
+  }
+  .site-footer h2 { font-size: 1rem; margin-bottom: .5rem; }
+  .site-footer ul { list-style: none; padding: 0; display: grid; gap: .35rem; font-size: .92rem; opacity: .9; }
+  .site-footer .copy { grid-column: 1 / -1; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.2); font-size: .85rem; opacity: .8; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="site-header">
+    <a class="logo" href="#">Тал нутаг</a>
+    <div class="header-actions">
+      <button class="btn" id="themeBtn" type="button" aria-label="Харанхуй/гэрэлтэй горим солих">Горим</button>
+      <button class="btn btn-primary" type="button">Бүртгүүлэх</button>
+    </div>
+  </header>
+
+     <nav class="site-nav" aria-label="Үндсэн цэс">
+    <ul class="nav-list">
+      <li><a href="#" aria-current="page">Нүүр</a></li>
+      <li><a href="#">Чиглэл</a></li>
+      <li><a href="#">Зам тэмдэглэл</a></li>
+      <li><a href="#">Зөвлөгөө</a></li>
+      <li><a href="#">Зургийн цомог</a></li>
+      <li class="push-right"><a href="#">Холбоо барих</a></li>
+    </ul>
+  </nav>
+
+  <main class="content">
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">Хангай, Говь, Хөвсгөл: энэ намрын шилдэг маршрутууд</h1>
+      <p>Орон нутгийн жолоочид болон аялагчдын шалгасан замууд, буудаллах газар, хүрэх хугацааг нэг дор.</p>
+    </section>
+
+    <div class="section-title">
+      <h2>Сүүлийн нийтлэлүүд</h2>
+      <a href="#">Бүгдийг үзэх</a>
+    </div>
+
+    <div class="card-grid">
+      <article class="card">
+        <div class="card-media m1" role="img" aria-label="Хангайн ууландах тал"></div>
+        <div class="card-body">
+          <h3>Орхон хөндийгөөр 3 өдрийн аялал</h3>
+          <p>Хархорум, Орхоны хүрхрээ, Тувхэн хийдийг нэг маршрутад багтаах төлөвлөгөө.</p>
+          <div class="card-meta"><span class="tag">Хангай</span><span>8 мин унших</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-media m2" role="img" aria-label="Говийн элсэн манхан"></div>
+        <div class="card-body">
+          <h3>Хонгорын элсээр гарах нь</h3>
+          <p>Дуутай элсэн манхан дээр гарах хамгийн тохиромжтой цаг, анхаарах зүйлс.</p>
+          <div class="card-meta"><span class="tag">Говь</span><span>6 мин унших</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-media m3" role="img" aria-label="Хөвсгөл нуур"></div>
+        <div class="card-body">
+          <h3>Хөвсгөлийн зүүн эрэг дагуух зам</h3>
+          <p>Хатгалаас Ханх хүртэл замын нөхцөл, шатахуун, амрах газрын тойм.</p>
+          <div class="card-meta"><span class="tag">Хойд</span><span>10 мин унших</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-media m4" role="img" aria-label="Дорнодын тал"></div>
+        <div class="card-body">
+          <h3>Дорнодын тал дахь шувуудын хөдөлгөөн</h3>
+          <p>Монгол Дахуурын бэсрэг талд шувуу ажиглах хамгийн сайн цаг.</p>
+          <div class="card-meta"><span class="tag">Дорнод</span><span>5 мин унших</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-media m5" role="img" aria-label="Цасан уулс"></div>
+        <div class="card-body">
+          <h3>Алтайн Таван Богд: анхны гарц</h3>
+          <p>Бэлтгэл, тоног төхөөрөмж, зөвшөөрөл авах дарааллын товч заавар.</p>
+          <div class="card-meta"><span class="tag">Баруун</span><span>12 мин унших</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-media m6" role="img" aria-label="Улаан хаднууд"></div>
+        <div class="card-body">
+          <h3>Баянзаг ба Цагаан суваргын шөнө</h3>
+          <p>Хадан хясаа дундах түүхэн газруудад нар жаргах үеийн зураг авалт.</p>
+          <div class="card-meta"><span class="tag">Говь</span><span>7 мин унших</span></div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <aside class="sidebar" aria-label="Нэмэлт мэдээлэл">
+    <section class="widget">
+      <h2>Эрэлттэй чиглэл</h2>
+      <ul>
+        <li>Хөвсгөл <span>124 нийтлэл</span></li>
+        <li>Орхон хөндий <span>86 нийтлэл</span></li>
+        <li>Өмнөговь <span>71 нийтлэл</span></li>
+        <li>Алтай <span>45 нийтлэл</span></li>
+      </ul>
+    </section>
+    <section class="widget">
+      <h2>Шинэ нийтлэл имэйлээр аваарай</h2>
+      <div class="subscribe">
+        <label for="email" class="visually">Имэйл хаяг</label>
+        <input id="email" type="email" placeholder="name@example.mn">
+        <button class="btn btn-primary" type="button">Захиалах</button>
+      </div>
+    </section>
+  </aside>
+
+  <footer class="site-footer">
+    <section>
+      <h2>Тал нутаг</h2>
+      <p>Монголын аялагчдад зориулсан зам, буудал, зөвлөгөөний сан.</p>
+    </section>
+    <nav aria-label="Хуудас">
+      <h2>Хуудас</h2>
+      <ul><li>Нүүр</li><li>Чиглэл</li><li>Зөвлөгөө</li></ul>
+    </nav>
+    <section>
+      <h2>Холбоо барих</h2>
+      <ul><li>info@talnutag.mn</li><li>Улаанбаатар хот</li></ul>
+    </section>
+    <p class="copy">© 2026 Тал нутаг. Лаб 4 – Flexbox ба CSS Grid.</p>
+  </footer>
+
+</div>
+<script>
+  
+  var btn = document.getElementById('themeBtn');
+  btn.addEventListener('click', function () {
+    var root = document.documentElement;
+    var dark = root.getAttribute('data-theme') === 'dark' ||
+      (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+    root.setAttribute('data-theme', dark ? 'light' : 'dark');
+  });
+</script>
+<style>.visually{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}</style>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тал нутаг – Зургийн цомог | Лаб 6</title>
+    <link rel="stylesheet" href="lab6-style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M8 3l4 8 5-5 5 15H2L8 3z"/>
+                </svg>
+                <span>Тал нутаг</span>
+            </a>
+
+            <nav aria-label="Үндсэн цэс">
+                <ul class="nav-list">
+                    <li><a href="#">Нүүр</a></li>
+                    <li><a href="#gallery">Зургийн цомог</a></li>
+                    <li><a href="#media">Видео ба Газрын зураг</a></li>
+                </ul>
+            </nav>
+
+            <button id="theme-toggle" class="btn-theme" type="button" aria-label="Харанхуй горим солих">
+                <span class="theme-icon">🌙</span> Горим
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Хангай, Говь, Хөвсгөл: Зургийн цомог</h1>
+            <p>Орон нутгийн аялагчдын дуранд буусан шилдэг агшнууд. Карт дээр хулганаа аваачих эсвэл дарж дэлгэрэнгүй мэдээллийг харна уу.</p>
+        </section>
+
+        <section id="gallery" class="gallery-section">
+            <h2>Аяллын зургийн цомог</h2>
+            <div class="gallery-grid">
+                
+                <article class="flip-card" style="--i: 0;" tabindex="0">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="img/photo1.jpg" alt="Орхон хөндийн хүрхрээ">
+                            <div class="card-caption">
+                                <h3>Орхон хөндий</h3>
+                                <span>Хангай</span>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Орхон хөндий</h3>
+                            <p>Хархорум, Орхоны хүрхрээ, Төвхөн хийдийг нэг маршрутад багтаах 3 өдрийн аяллын зураг.</p>
+                            <button type="button" class="btn-flip" aria-label="Картыг буцаах">Буцаах</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="flip-card" style="--i: 1;" tabindex="0">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="img/photo2.jpg" alt="Хонгорын элсэн манхан">
+                            <div class="card-caption">
+                                <h3>Хонгорын элс</h3>
+                                <span>Говь</span>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Хонгорын элс</h3>
+                            <p>Дуутай элсэн манхан дээр нар жаргах үеэр авсан гайхалтай агшин.</p>
+                            <button type="button" class="btn-flip" aria-label="Картыг буцаах">Буцаах</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="flip-card" style="--i: 2;" tabindex="0">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="img/photo3.jpg" alt="Хөвсгөл нуурын эрэг">
+                            <div class="card-caption">
+                                <h3>Хөвсгөл нуур</h3>
+                                <span>Хойд бүс</span>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Хөвсгөл нуур</h3>
+                            <p>Хатгалаас Ханх хүртэлх зүүн эргийн дагуух онгон байгалийн үзэсгэлэн.</p>
+                            <button type="button" class="btn-flip" aria-label="Картыг буцаах">Буцаах</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="flip-card" style="--i: 3;" tabindex="0">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="img/photo4.jpg" alt="Дорнодын тал нутаг">
+                            <div class="card-caption">
+                                <h3>Дорнодын тал</h3>
+                                <span>Дорнод</span>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Дорнодын тал</h3>
+                            <p>Монгол Дагуурын бэсрэг талд нүүдлийн шувууд ажиглах намрын улирал.</p>
+                            <button type="button" class="btn-flip" aria-label="Картыг буцаах">Буцаах</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="flip-card" style="--i: 4;" tabindex="0">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="img/photo5.jpg" alt="Алтайн Таван Богд уул">
+                            <div class="card-caption">
+                                <h3>Алтайн Таван Богд</h3>
+                                <span>Баруун бүс</span>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Алтайн Таван Богд</h3>
+                            <p>Мөнх цаст оргилууд болон Потанины мөсөн голын дэргэдэх аялал.</p>
+                            <button type="button" class="btn-flip" aria-label="Картыг буцаах">Буцаах</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="flip-card" style="--i: 5;" tabindex="0">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="img/photo6.jpg" alt="Баянзаг ба Цагаан суварга">
+                            <div class="card-caption">
+                                <h3>Цагаан суварга</h3>
+                                <span>Говь</span>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Цагаан суварга</h3>
+                            <p>Хадан хясаа дундах түүхэн газруудад нар мандах үеийн зураг авалт.</p>
+                            <button type="button" class="btn-flip" aria-label="Картыг буцаах">Буцаах</button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <section id="media" class="media-section">
+            <h2>Аяллын тэмдэглэл ба Байршил</h2>
+            <div class="media-grid">
+                
+                <div class="media-card">
+                    <h3>Аяллын богино бичлэг</h3>
+                    <video controls preload="metadata" poster="img/photo1.jpg" class="responsive-media">
+                        <source src="video/clip.webm" type="video/webm">
+                        <source src="video/clip.mp4" type="video/mp4">
+                        <track src="video/clip.mn.vtt" kind="subtitles" srclang="mn" label="Монгол хадмал" default>
+                        Таны браузер видео тоглуулахыг дэмжихгүй байна.
+                    </video>
+                </div>
+
+                <div class="media-card">
+                    <h3>Маршрутын газрын зураг</h3>
+                    <iframe 
+                        src="https://openstreetmap.org" 
+                        title="Орхон хөндийн газрын зураг"
+                        class="responsive-media map-frame"
+                        loading="lazy"
+                        sandbox="allow-scripts allow-same-origin"
+                        referrerpolicy="no-referrer">
+                    </iframe>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Тал нутаг. Лаб 6 – CSS3 Animation, Transform & Multimedia.</p>
+        </div>
+    </footer>
+
+    <script src="script-lab6.js"></script>
+</body>
+</html>
